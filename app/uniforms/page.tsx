@@ -201,6 +201,15 @@ export default function UniformsPage() {
         >
           {lang === "ar" ? "استفسر عن الزي الطبي" : "ENQUIRE ABOUT MEDICAL UNIFORMS"}
         </Link>
+     <div className="mt-12">
+  <Image
+    src="/images/photo_2026-10-25_18-28-20.jpg"
+    alt="Medical uniforms for healthcare professionals"
+    width={1600}
+    height={1000}
+    className="w-full h-auto rounded-2xl object-cover"
+  />
+</div>
       </AnimatedSection>
     </div>
   </section>
