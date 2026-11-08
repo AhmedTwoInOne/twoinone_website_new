@@ -223,10 +223,9 @@ export default function SchoolsUniformsPage() {
     <main className="min-h-screen bg-background text-foreground">
       <section className="relative overflow-hidden bg-[#071018] text-white">
         <div
-  className="absolute inset-0 bg-cover bg-center"
+className={absolute inset-y-0 w-1/2 bg-no-repeat bg-contain bg-center ${isRTL ? "left-0" : "right-0"}}
   style={{
-    backgroundImage:
-      "linear-gradient(90deg, rgba(7,16,24,0.92), rgba(7,16,24,0.55)), url('/images/IMG_6748.PNG')",
+      backgroundImage: "url('/images/IMG_6748.PNG')",
   }}
 />
 
@@ -235,8 +234,7 @@ export default function SchoolsUniformsPage() {
         <div className="absolute -right-16 -top-16 h-72 w-72 rounded-full border border-white/10" />
 
         <div className="relative container mx-auto px-6 md:px-12 py-28 md:py-40">
-
-          <div className="max-w-4xl">
+<div className={`w-full lg:w-1/2 ${isRTL ? "ml-auto text-right" : "mr-auto text-left"}`}>
 
             <p className="text-accent text-sm font-bold tracking-widest mb-8">
 
