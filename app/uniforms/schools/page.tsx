@@ -221,18 +221,16 @@ export default function SchoolsUniformsPage() {
   return (
 
     <main className="min-h-screen bg-background text-foreground">
-      <section className="relative overflow-hidden bg-[#071018] text-white">
+    <section className="relative overflow-hidden grid lg:grid-cols-2 bg-[#071018] text-white">
         <div
-  className="absolute inset-0 bg-cover bg-center"
+className="relative w-full h-72 lg:absolute lg:inset-y-0 lg:left-1/2 lg:right-0 lg:h-auto bg-cover bg-center"
   style={{
     backgroundImage:
-      "linear-gradient(90deg, rgba(7,16,24,0.92), rgba(7,16,24,0.55)), url('/images/IMG_6748.PNG')",
+      "url('/images/IMG_6748.PNG')",
   }}
 />
 
-        <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full border border-white/10" />
 
-        <div className="absolute -right-16 -top-16 h-72 w-72 rounded-full border border-white/10" />
 
         <div className="relative container mx-auto px-6 md:px-12 py-28 md:py-40">
 
