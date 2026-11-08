@@ -69,7 +69,7 @@ src="/images/photo_2026-10-25_18-28-20.jpg"
 alt="Medical uniforms for healthcare teams"
 fill
 priority
-className="object-cover object-center"
+className="object-contain object-center"
 sizes="100vw"
 />
 
