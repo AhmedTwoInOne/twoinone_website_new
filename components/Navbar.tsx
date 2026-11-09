@@ -258,7 +258,11 @@ const UNIFORM_SUBPAGES = [
             {/* Mobile menu button */}
             <button
               className="relative z-[60] flex items-center justify-center rounded-full border border-line bg-foreground/10 p-2.5 text-foreground transition-all hover:bg-accent hover:text-background lg:hidden"
-              onClick={() => setMobileMenuOpen(true)}
+              onClick={() => {
+  setMobileActivitiesOpen(false);
+  setUniformsOpen(false);
+  setMobileMenuOpen(true);
+}}
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" />
@@ -349,7 +353,54 @@ const UNIFORM_SUBPAGES = [
                               exit={{ opacity: 0, height: 0 }}
                               className="overflow-hidden"
                             >
-                              <div className="pb-3 ps-4 flex flex-col">
+                            {uniformsOpen && (
+        <div
+          id="mobile-uniforms-submenu"
+          className={clsx(
+            "mb-2 mt-1 space-y-1",
+            isRTL
+              ? "mr-3 border-r border-line pr-3"
+              : "ml-3 border-l border-line pl-3"
+          )}
+        >
+          {UNIFORM_SUBPAGES.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setMobileActivitiesOpen(false);
+                setUniformsOpen(false);
+              }}
+              className={clsx(
+                "block rounded-lg px-3 py-2.5 text-sm transition-colors",
+                pathname === item.href
+                  ? "text-accent"
+                  : "text-muted hover:bg-foreground/5 hover:text-accent"
+              )}
+            >
+              {lang === "ar" ? item.ar : item.en}
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
+  ) : (
+    <Link
+      href={page.href}
+      onClick={() => setMobileMenuOpen(false)}
+      className={clsx(
+        "block py-2.5 text-sm font-semibold",
+        activeKey === page.key
+          ? "text-accent"
+          : "text-muted hover:text-accent"
+      )}
+    >
+      {page.name}
+    </Link>
+  )}
+</div>
+
                                 {ACTIVITY_PAGES.map((page) => (
                                   <div key={page.key}>
                                     <Link
