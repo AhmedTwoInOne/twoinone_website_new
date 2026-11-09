@@ -362,7 +362,20 @@ const UNIFORM_SUBPAGES = [
                                     >
                                       {page.name}
                                     </Link>
-                                   
+                                   {page.key === "Uniforms" && (
+  <div className="ms-4 mb-2 flex flex-col border-s border-line ps-3">
+    {UNIFORM_SUBPAGES.map((item) => (
+      <Link
+        key={item.href}
+        href={item.href}
+        onClick={() => setMobileMenuOpen(false)}
+        className="block py-2 text-sm text-muted hover:text-accent"
+      >
+        {lang === "ar" ? item.ar : item.en}
+      </Link>
+    ))}
+  </div>
+)}
                                   </div>
                                 ))}
                               </div>
