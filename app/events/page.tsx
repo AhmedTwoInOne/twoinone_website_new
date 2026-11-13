@@ -8,7 +8,6 @@ import {
   StaggerItem,
 } from "@/components/AnimatedSection";
 import {
-  CalendarDays,
   CheckCircle2,
   ClipboardCheck,
   Handshake,
@@ -121,65 +120,37 @@ export default function EventsPage() {
       className="flex min-h-screen flex-col bg-background text-foreground"
     >
       {/* 1. HERO */}
-      <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-[#06080b] py-16 md:min-h-[600px] md:py-24">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={HERO_IMG}
-            alt={
-              ar
-                ? "متحدث على منصة المؤتمر"
-                : "Conference speaker on stage"
-            }
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center opacity-40"
-          />
-
-          <div
-            className={clsx(
-              "absolute inset-0 from-[#06080b] via-[#06080b]/80 to-transparent",
-              isRTL ? "bg-gradient-to-l" : "bg-gradient-to-r"
-            )}
-          />
-        </div>
-
-        <div className="container relative z-10 mx-auto px-6 md:px-8">
-          <div className="max-w-3xl">
-            <div className="mb-6 flex items-start gap-3">
-              <CalendarDays
-                aria-hidden="true"
-                className="mt-0.5 h-6 w-6 shrink-0 text-accent"
-              />
-              <span className="text-sm leading-relaxed text-accent md:text-base">
-                {ar
-                  ? "المؤتمرات · القمم · فعاليات الشركات"
-                  : "Conferences · Summits · Corporate Events"}
-              </span>
-            </div>
+      <section className="overflow-hidden bg-[#071018] text-white">
+        <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:px-12 md:py-20">
+          <div className="order-2 min-w-0 text-start md:order-1">
+            <p className="mb-5 text-xs font-bold tracking-widest text-accent md:text-sm">
+              {ar
+                ? "تو إن ون / تنظيم الفعاليات"
+                : "TWO IN ONE LLC / EVENT ORGANIZING"}
+            </p>
 
             <h1
               className={clsx(
-                "break-words font-serif text-4xl font-bold uppercase text-white sm:text-5xl md:text-7xl lg:text-8xl",
-                isRTL
-                  ? "font-arabic leading-relaxed"
-                  : "leading-[1.05] tracking-tight"
+                "mb-6 break-words font-serif text-3xl font-bold leading-tight lg:text-5xl",
+                isRTL && "font-arabic leading-relaxed"
               )}
             >
-              {ar ? "تنظيم" : "Event"}
-              <br />
-              <span className="text-accent">
-                {ar ? "الفعاليات" : "Organizing"}
-              </span>
+              {ar ? "تنظيم الفعاليات" : "EVENT ORGANIZING"}
             </h1>
 
-            <p className="mt-8 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
+            <h2 className="mb-5 text-lg font-semibold leading-relaxed text-accent md:text-xl">
+              {ar
+                ? "المؤتمرات · المعارض · فعاليات الشركات"
+                : "CONFERENCES · EXHIBITIONS · CORPORATE EVENTS"}
+            </h2>
+
+            <p className="mb-8 text-base leading-relaxed text-white/80 md:text-lg">
               {ar
                 ? "نقدّم خدمات احترافية في تنفيذ وتنظيم الفعاليات وإنتاجها الإبداعي، مع الجمع بين الدقة والتميّز البصري والتنسيق المتكامل للفعاليات المؤسسية والخاصة وفعاليات الجهات والمنظمات."
                 : "We deliver refined event execution and creative production solutions, combining precision, visual excellence, and seamless coordination across corporate, private, and organization-led events."}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <Link href="/contact" className={buttonClass}>
                 {t.common.requestAQuote}
               </Link>
@@ -191,6 +162,20 @@ export default function EventsPage() {
                 {ar ? "تعرّف على شريكنا" : "Meet Our Business Partner"}
               </a>
             </div>
+          </div>
+
+          <div className="order-1 min-w-0 md:order-2">
+            <img
+              src={HERO_IMG}
+              alt={
+                ar
+                  ? "قاعة مؤتمر وتجهيزات فعالية مؤسسية"
+                  : "Conference venue and corporate event setup"
+              }
+              loading="eager"
+              decoding="async"
+              className="block h-auto w-full"
+            />
           </div>
         </div>
       </section>
