@@ -347,6 +347,16 @@ export default function EventsPage() {
                   </li>
                 ))}
               </ul>
+              <a
+  href="/avvio-profile-corrected.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-6 inline-flex min-h-[48px] max-w-full items-center justify-center bg-accent px-6 py-3 text-center text-sm font-bold text-background transition-opacity hover:opacity-90"
+>
+  {lang === "ar"
+    ? "عرض ملف الشركة (PDF)"
+    : "View Company Profile (PDF)"}
+</a>
             </AnimatedSection>
 
             <AnimatedSection
