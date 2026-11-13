@@ -231,7 +231,16 @@ export default function DigitalMarketingPage() {
 
               <p className="max-w-2xl leading-relaxed text-muted">
                 {c.partnerText}
-              </p>
+              </p><a
+  href="/avvio-profile-corrected.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-6 inline-flex min-h-[48px] max-w-full items-center justify-center bg-accent px-6 py-3 text-center text-sm font-bold text-background transition-opacity hover:opacity-90"
+>
+  {lang === "ar"
+    ? "عرض ملف الشركة (PDF)"
+    : "View Company Profile (PDF)"}
+</a>
             </div>
 
             <div className="min-w-0 bg-[#071018] p-6 text-white sm:p-10">
