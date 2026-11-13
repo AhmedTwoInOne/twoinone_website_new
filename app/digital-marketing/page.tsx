@@ -138,9 +138,20 @@ export default function DigitalMarketingPage() {
               {c.intro}
             </p>
 
-            <a href="#services" className={buttonClass}>
-              {c.explore}
-            </a>
+          <div className="flex flex-wrap items-center gap-4">
+  <a href="#services" className={buttonClass}>
+    {c.explore}
+  </a>
+
+  <a
+    href="#business-partner"
+    className="inline-flex min-h-[48px] items-center py-3 text-sm font-bold text-accent underline underline-offset-4"
+  >
+    {lang === "ar"
+      ? "تعرّف على شريكنا"
+      : "Meet Our Business Partner"}
+  </a>
+</div>
           </div>
 
           <div className="order-1 min-w-0 md:order-2">
@@ -199,7 +210,10 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* BUSINESS PARTNER */}
-      <section className="bg-surface py-16 md:py-24">
+      <section
+  id="business-partner"
+  className="scroll-mt-28 bg-surface py-16 md:py-24"
+>
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="min-w-0">
