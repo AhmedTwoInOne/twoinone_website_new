@@ -64,21 +64,10 @@ export default function ContactPage() {
   return (
     <div className="bg-background flex flex-col min-h-screen">
       {/* 1. HERO SECTION */}
-      <section className="relative w-full h-[50vh] min-h-[400px] flex items-center overflow-hidden bg-[#06080b]">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/contact_us_hero.png"
-            alt="Bulker ship representing global reach"
-            fill
-            priority
-            className="object-cover object-center opacity-40 hover:opacity-60 transition-opacity duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06080b] via-[#06080b]/80 to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <h1 className={clsx("text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white uppercase tracking-tighter leading-[0.85]", isRTL && "font-arabic")}>
+      <section className="overflow-hidden bg-[#071018] text-white" dir={isRTL ? "rtl" : "ltr"}>
+        <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:px-12 md:py-20">
+          <div className="order-2 min-w-0 text-start md:order-1">
+            <h1 className={clsx("mb-6 break-words font-serif text-3xl font-bold leading-tight lg:text-5xl", isRTL && "font-arabic")}>
               {heroTitle}
             </h1>
             <div>
@@ -86,6 +75,17 @@ export default function ContactPage() {
                 {t.contact.hero.desc}
               </p>
             </div>
+          </div>
+          <div className="order-1 min-w-0 md:order-2">
+            <Image
+              src="/images/contact_us_hero.png"
+              alt="Bulker ship representing global reach"
+              width={964}
+              height={559}
+              preload
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="block h-auto w-full"
+            />
           </div>
         </div>
       </section>
