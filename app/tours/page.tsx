@@ -302,69 +302,66 @@ export default function ToursPage() {
   return (
     <div className={clsx("min-h-screen overflow-hidden bg-background text-foreground", isRTL && "font-arabic")}>
       <section
-        className="relative flex min-h-[760px] items-end overflow-hidden bg-[#071018] sm:min-h-[800px] lg:min-h-[860px]"
+        className="overflow-hidden bg-[#071018] text-white"
+        dir={isRTL ? "rtl" : "ltr"}
         aria-labelledby="tours-hero-title"
       >
-        <Image
-          src="/images/tours-airport-welcome-flowers.png"
-          alt={
-            lang === "ar"
-              ? "موظفة استقبال تقدم الزهور لضيفة وتدعوها إلى سيارة رينج روفر بيضاء فاخرة في مطار مسقط"
-              : "A formally dressed host presenting flowers to a guest and inviting her to a white luxury Range Rover at Muscat airport"
-          }
-          fill
-          preload
-          sizes="100vw"
-          className="object-cover object-[61%_center] sm:object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#05090d]/95 via-[#05090d]/70 to-[#05090d]/5 rtl:bg-gradient-to-l" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#05090d] via-transparent to-[#05090d]/35" />
-
-        <div className="container relative z-10 mx-auto px-5 pb-10 pt-36 sm:px-8 md:px-12 md:pb-14">
-          <div className={clsx("max-w-3xl", isRTL && "mr-0 ml-auto text-right")}>
-            <div className={clsx("mb-6 flex items-center gap-3", isRTL && "flex-row-reverse justify-end")}>
-              <span className="h-px w-9 bg-accent" aria-hidden="true" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-accent sm:text-xs">
+        <div className="container mx-auto px-6 py-10 md:px-12 md:py-20">
+          <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
+            <div className="order-2 min-w-0 text-start md:order-1">
+              <p className="mb-5 text-xs font-bold uppercase leading-6 tracking-widest text-accent">
                 {c.eyebrow}
-              </span>
+              </p>
+              <h1
+                id="tours-hero-title"
+                className="break-words font-serif text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl"
+              >
+                {c.title}
+              </h1>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
+                {c.intro}
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Link
+                  href="#fleet"
+                  className="inline-flex min-h-[48px] max-w-full items-center justify-center gap-3 bg-accent px-6 py-3 text-center text-sm font-bold text-background transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                >
+                  <CarFront className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  {c.exploreFleet}
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex min-h-[48px] max-w-full items-center justify-center gap-3 border border-white/35 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-white hover:text-[#071018] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                >
+                  {c.planJourney}
+                  <ArrowRight className={clsx("h-4 w-4 shrink-0", isRTL && "rotate-180")} aria-hidden="true" />
+                </Link>
+              </div>
             </div>
-
-            <h1
-              id="tours-hero-title"
-              className="max-w-2xl text-balance font-serif text-4xl font-bold leading-[0.94] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-7xl"
-            >
-              {c.title}
-            </h1>
-            <p className="mt-6 max-w-xl text-balance text-base leading-7 text-white/76 sm:text-lg sm:leading-8">
-              {c.intro}
-            </p>
-
-            <div className={clsx("mt-9 flex flex-col gap-3 sm:flex-row", isRTL && "sm:flex-row-reverse sm:justify-end")}>
-              <Link
-                href="#fleet"
-                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 py-3 text-xs font-black uppercase tracking-[0.16em] text-background transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              >
-                <CarFront className="h-4 w-4" aria-hidden="true" />
-                {c.exploreFleet}
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-white/35 bg-black/15 px-6 py-3 text-xs font-black uppercase tracking-[0.16em] text-white transition-colors hover:border-white hover:bg-white hover:text-[#071018] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              >
-                {c.planJourney}
-                <ArrowRight className={clsx("h-4 w-4", isRTL && "rotate-180")} aria-hidden="true" />
-              </Link>
+            <div className="order-1 min-w-0 md:order-2">
+              {/* Keep the whole photograph visible at its natural aspect ratio. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/tours-airport-welcome-flowers.png"
+                alt={
+                  lang === "ar"
+                    ? "موظفة استقبال تقدم الزهور لضيفة بجانب سيارة رينج روفر بيضاء في مطار مسقط"
+                    : "A host welcoming a guest with flowers beside a white Range Rover at Muscat airport"
+                }
+                loading="eager"
+                decoding="async"
+                className="block h-auto w-full"
+              />
             </div>
           </div>
-
           <ul
-            className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/12 bg-white/12 sm:grid-cols-3"
+            className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/12 bg-white/12 sm:grid-cols-3"
             aria-label={lang === "ar" ? "تفاصيل الخدمة الرئيسية" : "Key service details"}
           >
             {c.facts.map(([label, value], index) => {
               const FactIcon = index === 0 ? Sparkles : index === 1 ? Clock3 : KeyRound;
               return (
-                <li key={label} className="flex items-start gap-4 bg-[#071018]/82 p-5 backdrop-blur-sm sm:p-6">
+                <li key={label} className="flex items-start gap-4 bg-[#071018] p-5 sm:p-6">
                   <FactIcon className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                   <div>
                     <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-white/50">
