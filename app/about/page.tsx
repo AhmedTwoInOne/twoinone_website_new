@@ -21,37 +21,18 @@ export default function AboutPage() {
   return (
     <div className="bg-background flex flex-col min-h-screen">
       {/* 1. HERO SECTION */}
-      <section className="relative flex h-[68svh] min-h-[540px] w-full items-end overflow-hidden bg-[#06080b] pb-12 pt-36 md:h-[60vh] md:min-h-[460px] md:items-center md:py-0">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/about-ota.jpg"
-            alt={
-              lang === "ar"
-                ? "حوض عاكس ومنحوتة شجرة ضمن عمارة عُمانية معاصرة"
-                : "Mirror pool and tree sculpture in contemporary Omani architecture"
-            }
-            fill
-            preload
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(6,8,11,0.01)_0%,rgba(6,8,11,0.04)_44%,rgba(6,8,11,0.39)_76%,rgba(6,8,11,0.48)_100%)] md:hidden" />
-          <div className="absolute inset-0 hidden bg-gradient-to-r from-[#06080b] via-[#06080b]/72 to-transparent md:block rtl:bg-gradient-to-l" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className={clsx("max-w-3xl", isRTL && "ms-auto text-start")}>
+      <section className="overflow-hidden bg-[#071018] text-white" dir={isRTL ? "rtl" : "ltr"}>
+        <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:px-12 md:py-20">
+          <div className="order-2 min-w-0 text-start md:order-1">
             <div className="mb-6 flex items-center gap-3">
               <Landmark className="w-6 h-6 text-accent" />
-              <span className="text-accent font-serif italic tracking-wide">
+              <span className="text-accent text-xs font-bold uppercase tracking-widest md:text-sm">
                 {t.about.hero.profile}
               </span>
             </div>
 
-            <h1 className={clsx("text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white uppercase tracking-tighter leading-[0.85]", isRTL && "font-arabic")}>
-              {line1}
-              <br />
-              {line2}
+            <h1 className={clsx("mb-6 break-words font-serif text-3xl font-bold leading-tight lg:text-5xl", isRTL && "font-arabic")}>
+              {line1}{" "}{line2}
             </h1>
 
             <div>
@@ -59,6 +40,21 @@ export default function AboutPage() {
                 {t.about.hero.desc}
               </p>
             </div>
+          </div>
+          <div className="order-1 min-w-0 md:order-2">
+            <Image
+              src="/images/about-ota.jpg"
+              alt={
+              lang === "ar"
+                ? "حوض عاكس ومنحوتة شجرة ضمن عمارة عُمانية معاصرة"
+                : "Mirror pool and tree sculpture in contemporary Omani architecture"
+            }
+              width={2483}
+              height={1627}
+              preload
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="block h-auto w-full"
+            />
           </div>
         </div>
       </section>
