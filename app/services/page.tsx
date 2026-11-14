@@ -140,20 +140,9 @@ export default function ServicesPage() {
   return (
     <div className="bg-background flex flex-col min-h-screen">
       {/* 1. HERO SECTION */}
-      <section className="relative w-full h-[70vh] min-h-[500px] flex items-center overflow-hidden bg-[#06080b]">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={HERO_IMG}
-            alt={ar ? "خدمات المرافق في عُمان" : "Facility services in Oman"}
-            fill
-            priority
-            className="object-cover object-center opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06080b] via-[#06080b]/80 to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="max-w-3xl">
+      <section className="overflow-hidden bg-[#071018] text-white" dir={isRTL ? "rtl" : "ltr"}>
+        <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:px-12 md:py-20">
+          <div className="order-2 min-w-0 text-start md:order-1">
             <div className="mb-6 flex items-center gap-3">
               <Briefcase className="w-6 h-6 text-accent" />
               <span className={clsx("text-accent font-serif italic tracking-wide", isRTL && "font-arabic")}>
@@ -163,7 +152,7 @@ export default function ServicesPage() {
               </span>
             </div>
 
-            <h1 className={clsx("text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white uppercase tracking-tighter leading-[0.85]", isRTL && "font-arabic")}>
+            <h1 className={clsx("text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white uppercase tracking-tighter leading-tight", isRTL && "font-arabic")}>
               {line1}
               <br />
               <span className="text-accent">{line2}</span>
@@ -177,11 +166,22 @@ export default function ServicesPage() {
               </p>
               <Link
                 href="/contact"
-                className="inline-flex mt-8 px-8 py-3 bg-accent text-background font-bold tracking-widest text-xs rounded-sm hover:bg-white transition-colors uppercase"
+                className="inline-flex min-h-[48px] max-w-full items-center justify-center text-center mt-8 px-6 py-3 bg-accent text-background font-bold tracking-widest text-xs rounded-sm hover:bg-white transition-colors uppercase"
               >
                 {t.common.requestAQuote}
               </Link>
             </div>
+          </div>
+
+          <div className="order-1 min-w-0 md:order-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={HERO_IMG}
+              alt={ar ? "خدمات المرافق في عُمان" : "Facility services in Oman"}
+              loading="eager"
+              decoding="async"
+              className="block h-auto w-full"
+            />
           </div>
         </div>
       </section>
