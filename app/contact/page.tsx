@@ -67,7 +67,7 @@ export default function ContactPage() {
       <section className="relative w-full h-[50vh] min-h-[400px] flex items-center overflow-hidden bg-[#06080b]">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/contact_us_hero.png"
+           src="/images/cotact us.png"
             alt="Bulker ship representing global reach"
             fill
             priority
