@@ -44,7 +44,7 @@ export default function CareersPage() {
       return;
     }
     setIsSubmitting(true);
-    
+
     try {
       const formData = new FormData();
       formData.append("name", (document.getElementById("name") as HTMLInputElement).value);
@@ -77,48 +77,47 @@ export default function CareersPage() {
 
   return (
     <div className="bg-background flex flex-col min-h-screen">
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full h-[50vh] min-h-[400px] flex items-center overflow-hidden bg-[#06080b]">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/careers_hero.png"
-            alt="Careers Hero"
-            fill
-            priority
-            className="object-cover object-[65%_center] md:object-center opacity-40 hover:opacity-60 transition-opacity duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06080b] via-[#06080b]/80 to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="max-w-3xl">
+      {/* 1. HERO SECTION — identical structure to About Us */}
+      <section className="overflow-hidden bg-[#071018] text-white" dir={isRTL ? "rtl" : "ltr"}>
+        <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:px-12 md:py-20">
+          <div className="order-2 min-w-0 text-start md:order-1">
             <div className="mb-6 flex items-center gap-3">
               <Users className="w-6 h-6 text-accent" />
-              <span className="text-accent font-serif italic tracking-wide">
+              <span className="text-accent text-xs font-bold uppercase tracking-widest md:text-sm">
                 {t.careers.hero.join}
               </span>
             </div>
 
-            <h1 className={clsx("text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white uppercase tracking-tighter leading-[0.85]", isRTL && "font-arabic")}>
+            <h1 className={clsx("mb-6 break-words font-serif text-3xl font-bold leading-tight lg:text-5xl", isRTL && "font-arabic")}>
               {heroTitle}
             </h1>
 
             <div>
-              <p className={clsx("text-white/80 text-base md:text-lg font-normal leading-relaxed max-w-xl text-balance mt-6", isRTL && "text-start")}>
+              <p className="text-white/90 text-base md:text-lg font-normal leading-relaxed max-w-xl text-balance mt-6">
                 {t.careers.hero.desc}
               </p>
             </div>
           </div>
+
+          <div className="order-1 min-w-0 md:order-2">
+            <Image
+              src="/images/careers_hero.png"
+              alt={lang === "ar" ? "فرص العمل في شركة اثنين في واحد" : "Careers at Two in One LLC"}
+              width={2483}
+              height={1627}
+              preload
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="block h-auto w-full"
+            />
+          </div>
         </div>
       </section>
 
-      {/* 2. OPENINGS & APPLICATION FORM */}
+      {/* 2. OPENINGS & APPLICATION FORM — preserved */}
       <section className="py-24 md:py-32 relative z-10 bg-background overflow-hidden">
         <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-          
           {/* Left: Job Postings & General Info */}
           <div className="lg:col-span-7 flex flex-col gap-16">
-            
             {/* ICC Lawyer Opening */}
             <div>
               <AnimatedSection direction="up">
@@ -169,19 +168,22 @@ export default function CareersPage() {
                 {t.careers.general.desc}
               </p>
             </AnimatedSection>
-
           </div>
 
-          {/* Right: Application Form */}
+           {/* Right: Application Form */}
           <div className="lg:col-span-5 relative">
             <div className="sticky top-32">
               <AnimatedSection direction={isRTL ? "right" : "left"} className="bg-surface p-8 md:p-10 border border-line rounded-sm shadow-xl shadow-forest/5">
-                <h3 className={clsx("font-serif font-bold text-2xl text-foreground mb-6", isRTL && "text-start font-arabic")}>{t.careers.form.title}</h3>
+                <h3 className={clsx("font-serif font-bold text-2xl text-foreground mb-6", isRTL && "text-start font-arabic")}>
+                  {t.careers.form.title}
+                </h3>
 
                 {submitted ? (
                   <div className="bg-surface-2 p-8 text-center rounded-sm border border-line mt-4">
                     <CheckCircle2 className="w-12 h-12 text-accent mx-auto mb-4" />
-                    <h4 className={clsx("text-accent font-serif font-bold text-xl mb-3", isRTL && "font-arabic")}>{t.careers.form.successTitle}</h4>
+                    <h4 className={clsx("text-accent font-serif font-bold text-xl mb-3", isRTL && "font-arabic")}>
+                      {t.careers.form.successTitle}
+                    </h4>
                     <p className="text-muted font-normal text-sm">
                       {t.careers.form.successDesc}
                     </p>
@@ -200,7 +202,7 @@ export default function CareersPage() {
                         placeholder={t.careers.form.placeholderName}
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <label htmlFor="email" className={clsx("text-xs font-bold uppercase tracking-widest text-muted block", isRTL && "text-start")}>
                         {t.careers.form.email}
@@ -228,9 +230,10 @@ export default function CareersPage() {
                       </select>
                     </div>
 
-                    <div className="space-y-2">
+                     <div className="space-y-2">
                       <label htmlFor="cv" className={clsx("text-xs font-bold uppercase tracking-widest text-muted block flex items-center gap-2", isRTL && "flex-row-reverse")}>
-                        {t.careers.form.uploadCv} <span className="text-[10px] lowercase font-normal">{t.careers.form.pdfOnly}</span>
+                        {t.careers.form.uploadCv}
+                        <span className="text-[10px] lowercase font-normal">{t.careers.form.pdfOnly}</span>
                       </label>
                       <div className="relative group">
                         <input
