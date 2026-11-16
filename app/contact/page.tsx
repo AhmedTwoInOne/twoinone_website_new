@@ -67,11 +67,11 @@ export default function ContactPage() {
       <section className="relative w-full h-[50vh] min-h-[400px] flex items-center overflow-hidden bg-[#06080b]">
         <div className="absolute inset-0 z-0">
           <Image
-           src="/images/cotact us.png"
+         src="/images/contact_us_hero.png"
             alt="Bulker ship representing global reach"
             fill
             priority
-            className="object-cover object-center opacity-40 hover:opacity-60 transition-opacity duration-500"
+            className="object-cover object-center opacity-40 hover:opacity-90 transition-opacity duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#06080b] via-[#06080b]/80 to-transparent" />
         </div>
