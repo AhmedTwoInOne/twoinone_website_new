@@ -1,4 +1,4 @@
-                      {COMPANY.email}
+{COMPANY.email}
                     </a>
                   </div>
                 </StaggerItem>
