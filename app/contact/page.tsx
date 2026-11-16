@@ -1,4 +1,135 @@
-{COMPANY.email}
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import {
+  AnimatedSection,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/AnimatedSection";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { COMPANY } from "@/lib/siteData";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { useLanguage } from "@/components/LanguageContext";
+import { useTheme } from "@/components/ThemeContext";
+import { translations } from "@/lib/translations";
+import clsx from "clsx";
+
+export default function ContactPage() {
+  const { lang, isRTL } = useLanguage();
+  const { theme } = useTheme();
+  const t = translations[lang];
+
+  const [token, setToken] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const heroTitle = t.contact.hero.title;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!token) {
+      alert(t.contact.form.errorBot || "Please complete the bot protection check.");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: (document.getElementById("name") as HTMLInputElement).value,
+          email: (document.getElementById("email") as HTMLInputElement).value,
+          division: (document.getElementById("division") as HTMLSelectElement).value,
+          message: (document.getElementById("message") as HTMLTextAreaElement).value,
+          token,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert(t.contact.form.errorSubmit || "Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert(t.contact.form.errorGeneric || "An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="bg-background flex flex-col min-h-screen">
+      {/* 1. HERO SECTION — identical structure and spacing to About Us */}
+      <section className="overflow-hidden bg-[#071018] text-white" dir={isRTL ? "rtl" : "ltr"}>
+        <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:px-12 md:py-20">
+          {/* Text column */}
+          <div className="order-2 min-w-0 text-start md:order-1">
+            <div className="mb-6 flex items-center gap-3">
+              <Mail className="w-6 h-6 text-accent" aria-hidden="true" />
+              <span className={clsx("text-accent text-xs font-bold uppercase tracking-widest md:text-sm", isRTL && "font-arabic")}>
+                {lang === "ar" ? "تواصل معنا" : "GET IN TOUCH"}
+              </span>
+            </div>
+
+            <h1 className={clsx("mb-6 break-words font-serif text-3xl font-bold leading-tight lg:text-5xl", isRTL && "font-arabic")}>
+              {lang === "ar" ? heroTitle : "Contact Us"}
+            </h1>
+
+            <p className="text-white/90 text-base md:text-lg font-normal leading-relaxed max-w-xl text-balance mt-6">
+              {t.contact.hero.desc}
+            </p>
+          </div>
+
+          {/* Photo column: no frame, border, gradient, inset spacing or crop */}
+          <div className="order-1 min-w-0 md:order-2">
+            <Image
+              src="/images/contact us.png"
+              alt={lang === "ar" ? "مكتب استقبال شركة اثنين في واحد" : "Two in One LLC reception"}
+              width={2483}
+              height={1627}
+              preload
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="block h-auto w-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 2. CONTACT DETAILS & FORM */}
+      <section className="py-24 md:py-32 relative z-10 bg-background">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            
+            {/* Contact Details */}
+            <div>
+              <AnimatedSection direction="up" className="mb-12">
+                <h2 className={clsx("text-3xl md:text-4xl font-serif font-bold text-foreground mb-4", isRTL && "font-arabic")}>
+                  {t.contact.details.title}
+                </h2>
+                <div className="w-16 h-px bg-accent mb-8" />
+                <p className={clsx("text-muted font-normal text-lg mb-12 text-balance leading-relaxed", isRTL && "text-start")}>
+                  {t.contact.details.desc}
+                </p>
+              </AnimatedSection>
+
+              <StaggerContainer className="space-y-8">
+                {/* Email */}
+                <StaggerItem direction={isRTL ? "right" : "left"} className={clsx("flex items-start gap-6 group", isRTL && "flex-row-reverse text-end")}>
+                  <div className="p-4 bg-surface rounded-full group-hover:bg-accent/10 transition-colors">
+                    <Mail className="w-6 h-6 text-foreground group-hover:text-accent transition-colors" />
+                  </div>
+                  <div>
+                    <h3 className={clsx("font-serif font-bold text-xl text-foreground mb-1", isRTL && "font-arabic")}>{t.contact.details.emailInquiry}</h3>
+                    <a 
+                      href={`mailto:${COMPANY.email}`}
+                      className="text-muted font-normal hover:text-accent transition-colors lowercase"
+                      style={{ direction: 'ltr', display: 'inline-block' }}
+                    >
+                      {COMPANY.email}
                     </a>
                   </div>
                 </StaggerItem>
@@ -126,3 +257,8 @@
             </AnimatedSection>
             
           </div>
+        </div>
+      </section>
+    </div>
+  );
+}
